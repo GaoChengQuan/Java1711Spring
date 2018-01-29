@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.situ.spring.dao.IStudentDao;
 import com.situ.spring.entity.Student;
 
-@Repository("studentDao")
+@Repository
 public class StudentDaoImpl implements IStudentDao{
 
 	@Override
