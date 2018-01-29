@@ -3,12 +3,20 @@ package com.situ.spring.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+@Component("banji")
 public class Banji {
 	private Integer id;
 	private String name;
 	private List<Course> courseList = new ArrayList<Course>();
 
 	private List<Student> list = new ArrayList<Student>();
+	
+	public Banji() {
+		super();
+	}
 
 	public Banji(Integer id, String name) {
 		super();
@@ -36,6 +44,7 @@ public class Banji {
 		return name;
 	}
 
+	@Value("Java1711")
 	public void setName(String name) {
 		this.name = name;
 	}

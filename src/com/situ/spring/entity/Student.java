@@ -3,12 +3,31 @@ package com.situ.spring.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.annotation.Resource;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
+
+// <bean name="student" class="com.situ.spring.entity.Student"/>
+@Component("student") //工具类不属于任意一层
+//@Controller("student")
+//@Service("student")
+//@Repository("student")
 public class Student implements Serializable {
 	private Integer id;
 	private String name;
 	private Integer age;
+	//通过反射Field，赋值
+	@Value("男")
 	private String gender;
 	private String address;
+	// 引用类型注入：banji属性注入Banji对象
+	// <property name="banji" ref="banji"/>
+	@Resource(name="banji")
 	private Banji banji;
 
 	public Student() {
@@ -42,10 +61,14 @@ public class Student implements Serializable {
 		System.out.println("Student.Student() 222");
 	}
 
+	//构造方法执行对象创建之后调用,init-method
+	@PostConstruct
 	public void init() {
 		System.out.println("Student.init()");
 	}
 
+	//在销毁之前调用，destory-method
+	@PreDestroy
 	public void destory() {
 		System.out.println("Student.destory()");
 	}
@@ -62,6 +85,8 @@ public class Student implements Serializable {
 		return name;
 	}
 
+	//通过set方法赋值
+	@Value("lisi")
 	public void setName(String name) {
 		this.name = name;
 	}
