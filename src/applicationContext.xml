@@ -17,6 +17,41 @@
 	<!-- 指定扫描com.situ.spring包下面所有的注解 -->
 	<context:component-scan base-package="com.situ.spring"/>
 	
+	<!-- 1、配置目标对象，加入IOC容器 -->
+	<bean name="studentServiceImpl" class="com.situ.spring.service.impl.StudentServiceImpl"/>
+	
+	<!-- 2、配置通知(增强)对象，加入IOC容器 -->
+	<bean name="myAdvice" class="com.situ.spring.aop.MyAdvice"/>
+	
+	<!-- 3、将通知myAdvice织入到目标对象studentServiceImpl -->
+	<aop:config>
+		<!-- 配置切入点 -->
+		<!-- 
+			public void com.situ.spring.service.impl.StudentServiceImpl.save()
+			void com.situ.spring.service.impl.StudentServiceImpl.save() 		public可以省略
+			* com.situ.spring.service.impl.StudentServiceImpl.save()            对返回值不做要求，*表示可以返回任意返回值
+			* com.situ.spring.service.impl.StudentServiceImpl.*()               所有的方法都增强
+			* com.situ.spring.service.impl.*ServiceImpl.*()                     对所有的*ServiceImpl增强
+		 	* com.situ.spring.service.impl.*ServiceImpl.*(..)                   ..表示对方法的参数不做要求，参数为空或者多个都可以
+		 	* com.situ.spring.service..*ServiceImpl.*(..)                       service包下面所有的子包
+		 -->
+		<aop:pointcut expression="execution(* com.situ.spring.service..*ServiceImpl.*(..))" id="pc"/>
+		<!-- 配置切面：切入点+通知 -->
+		<aop:aspect ref="myAdvice">
+			<!-- 前置通知：目标方法运行之前调用 -->
+			<aop:before method="before" pointcut-ref="pc"/>
+			<!-- 后置通知(如果出现异常不会调用)在目标方法执行之后调用 -->
+			<aop:after-returning method="afterReturning" pointcut-ref="pc"/>
+			<!-- 环绕通知（在目标方法之前和之后都调用） -->
+			<aop:around method="round" pointcut-ref="pc"/>
+			<!-- 异常通知：如果出现异常，就会调用 -->
+			<aop:after-throwing method="afterException" pointcut-ref="pc"/>
+			<!-- 后置通知：(无论是否出现异常都会调用)在目标方法执行之后调用 -->
+			<aop:after method="after" pointcut-ref="pc"/>
+		</aop:aspect>
+	</aop:config>
+	
+	
 	<!-- <bean name="studentDaoImpl" class="com.situ.spring.dao.impl.StudentDaoImpl"/>
 	
 	<bean name="studentServiceImpl" class="com.situ.spring.service.impl.StudentServiceImpl">

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 
 // <bean name="student" class="com.situ.spring.entity.Student"/>
-@Component("student") //工具类不属于任意一层
+//@Component("student") //工具类不属于任意一层
 //@Controller("student")
 //@Service("student")
 //@Repository("student")

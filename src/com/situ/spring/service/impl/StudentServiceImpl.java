@@ -1,25 +1,33 @@
 package com.situ.spring.service.impl;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.situ.spring.dao.IStudentDao;
 import com.situ.spring.entity.Student;
 import com.situ.spring.service.IStudentService;
+import com.sun.org.apache.bcel.internal.util.SecuritySupport;
 
-@Service
+
 public class StudentServiceImpl implements IStudentService {
-	@Autowired
-	private IStudentDao studentDao;
 
 	@Override
-	public List<Student> findAll() {
-		System.out.println("StudentServiceImpl.findAll()");
-		studentDao.findAll();
+	public void save() {
+		System.out.println("StudentServiceImpl.save()");
+	}
+
+	@Override
+	public void update() {
+		System.out.println("StudentServiceImpl.update()");
+		int i = 3 / 0;
+	}
+
+	@Override
+	public void delete() {
+		System.out.println("StudentServiceImpl.delete()");
+	}
+
+	@Override
+	public Student findById() {
+		System.out.println("StudentServiceImpl.findById()");
 		return null;
 	}
 }

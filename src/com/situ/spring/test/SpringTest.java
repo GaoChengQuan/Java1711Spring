@@ -6,6 +6,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.situ.spring.dao.IStudentDao;
 import com.situ.spring.entity.Student;
+import com.situ.spring.service.IStudentService;
 import com.situ.spring.web.StudentController;
 
 public class SpringTest {
@@ -51,5 +52,15 @@ public class SpringTest {
 		//从容器中取出bean
 		StudentController studentController =   (StudentController) context.getBean("studentController");
 		studentController.findAll();
+	}
+	
+	@Test
+	public void test5() {
+		//得到IOC容器对象
+		ApplicationContext context = 
+				new ClassPathXmlApplicationContext("applicationContext.xml");
+		//从容器中取出bean
+		IStudentService service = (IStudentService) context.getBean("studentServiceImpl");
+		service.update();
 	}
 }
