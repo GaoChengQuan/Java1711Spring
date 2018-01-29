@@ -2,20 +2,18 @@ package com.situ.spring.service.impl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
 import com.situ.spring.dao.IStudentDao;
 import com.situ.spring.entity.Student;
 import com.situ.spring.service.IStudentService;
 
+@Service("studentService")
 public class StudentServiceImpl implements IStudentService {
+	@Resource(name="studentDao")
 	private IStudentDao studentDao;
-
-	public IStudentDao getStudentDao() {
-		return studentDao;
-	}
-
-	public void setStudentDao(IStudentDao studentDao) {
-		this.studentDao = studentDao;
-	}
 
 	@Override
 	public List<Student> findAll() {
@@ -23,5 +21,4 @@ public class StudentServiceImpl implements IStudentService {
 		studentDao.findAll();
 		return null;
 	}
-
 }

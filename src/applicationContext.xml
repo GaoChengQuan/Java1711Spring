@@ -17,7 +17,7 @@
 	<!-- 指定扫描com.situ.spring包下面所有的注解 -->
 	<context:component-scan base-package="com.situ.spring"/>
 	
-	<bean name="studentDaoImpl" class="com.situ.spring.dao.impl.StudentDaoImpl"/>
+	<!-- <bean name="studentDaoImpl" class="com.situ.spring.dao.impl.StudentDaoImpl"/>
 	
 	<bean name="studentServiceImpl" class="com.situ.spring.service.impl.StudentServiceImpl">
 		<property name="studentDao" ref="studentDaoImpl"/>
@@ -25,7 +25,7 @@
 	
 	<bean name="studentController" class="com.situ.spring.web.StudentController">
 		<property name="studentService" ref="studentServiceImpl"/>
-	</bean>
+	</bean> -->
 	
 	<!-- IOC容器配置，要创建的所有对象都配置到这里，交给Spring容器来管理 -->
 	<!-- <bean name="student" class="com.situ.spring.entity.Student">
